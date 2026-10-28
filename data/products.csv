@@ -1,0 +1,71 @@
+ProductID,ProductName,Category,SubCategory,ListPrice
+P-001,Phones 01,Technology,Phones,369.82
+P-002,Phones 02,Technology,Phones,456.94
+P-003,Phones 03,Technology,Phones,424.31
+P-004,Phones 04,Technology,Phones,406.02
+P-005,Phones 05,Technology,Phones,403.08
+P-006,Computers 01,Technology,Computers,1040.16
+P-007,Computers 02,Technology,Computers,1086.58
+P-008,Computers 03,Technology,Computers,791.83
+P-009,Computers 04,Technology,Computers,984.38
+P-010,Computers 05,Technology,Computers,840.81
+P-011,Accessories 01,Technology,Accessories,74.11
+P-012,Accessories 02,Technology,Accessories,72.84
+P-013,Accessories 03,Technology,Accessories,65.17
+P-014,Accessories 04,Technology,Accessories,68.32
+P-015,Accessories 05,Technology,Accessories,61.91
+P-016,Copiers 01,Technology,Copiers,1288.82
+P-017,Copiers 02,Technology,Copiers,1101.95
+P-018,Copiers 03,Technology,Copiers,1047.71
+P-019,Copiers 04,Technology,Copiers,1017.56
+P-020,Copiers 05,Technology,Copiers,992.03
+P-021,Chairs 01,Furniture,Chairs,321.35
+P-022,Chairs 02,Furniture,Chairs,308.11
+P-023,Chairs 03,Furniture,Chairs,340.51
+P-024,Chairs 04,Furniture,Chairs,249.79
+P-025,Chairs 05,Furniture,Chairs,310.45
+P-026,Tables 01,Furniture,Tables,501.45
+P-027,Tables 02,Furniture,Tables,461.72
+P-028,Tables 03,Furniture,Tables,555.2
+P-029,Tables 04,Furniture,Tables,517.86
+P-030,Tables 05,Furniture,Tables,486.2
+P-031,Bookcases 01,Furniture,Bookcases,339.81
+P-032,Bookcases 02,Furniture,Bookcases,453.56
+P-033,Bookcases 03,Furniture,Bookcases,440.37
+P-034,Bookcases 04,Furniture,Bookcases,407.75
+P-035,Bookcases 05,Furniture,Bookcases,363.01
+P-036,Furnishings 01,Furniture,Furnishings,85.82
+P-037,Furnishings 02,Furniture,Furnishings,73.75
+P-038,Furnishings 03,Furniture,Furnishings,69.63
+P-039,Furnishings 04,Furniture,Furnishings,84.36
+P-040,Furnishings 05,Furniture,Furnishings,66.06
+P-041,Binders 01,Office Supplies,Binders,20.04
+P-042,Binders 02,Office Supplies,Binders,16.94
+P-043,Binders 03,Office Supplies,Binders,16.52
+P-044,Binders 04,Office Supplies,Binders,20.08
+P-045,Binders 05,Office Supplies,Binders,16.25
+P-046,Paper 01,Office Supplies,Paper,12.26
+P-047,Paper 02,Office Supplies,Paper,12.73
+P-048,Paper 03,Office Supplies,Paper,10.62
+P-049,Paper 04,Office Supplies,Paper,13.55
+P-050,Paper 05,Office Supplies,Paper,12.56
+P-051,Storage 01,Office Supplies,Storage,91.77
+P-052,Storage 02,Office Supplies,Storage,82.23
+P-053,Storage 03,Office Supplies,Storage,84.07
+P-054,Storage 04,Office Supplies,Storage,86.93
+P-055,Storage 05,Office Supplies,Storage,85.98
+P-056,Appliances 01,Office Supplies,Appliances,154.57
+P-057,Appliances 02,Office Supplies,Appliances,148.36
+P-058,Appliances 03,Office Supplies,Appliances,138.23
+P-059,Appliances 04,Office Supplies,Appliances,112.11
+P-060,Appliances 05,Office Supplies,Appliances,162.02
+P-061,Art 01,Office Supplies,Art,22.74
+P-062,Art 02,Office Supplies,Art,20.83
+P-063,Art 03,Office Supplies,Art,22.55
+P-064,Art 04,Office Supplies,Art,18.53
+P-065,Art 05,Office Supplies,Art,26.56
+P-066,Labels 01,Office Supplies,Labels,11.21
+P-067,Labels 02,Office Supplies,Labels,7.44
+P-068,Labels 03,Office Supplies,Labels,8.65
+P-069,Labels 04,Office Supplies,Labels,10.16
+P-070,Labels 05,Office Supplies,Labels,8.47

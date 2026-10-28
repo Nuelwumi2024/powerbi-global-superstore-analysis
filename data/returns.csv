@@ -1,0 +1,563 @@
+OrderID,ReturnReason,Returned
+AG-2023-00003,Late delivery,Yes
+AG-2023-00028,Not as described,Yes
+AG-2023-00042,Wrong item,Yes
+AG-2023-00046,Wrong item,Yes
+AG-2023-00054,Changed mind,Yes
+AG-2023-00078,Damaged in transit,Yes
+AG-2023-00079,Wrong item,Yes
+AG-2023-00092,Damaged in transit,Yes
+AG-2023-00118,Late delivery,Yes
+AG-2023-00121,Wrong item,Yes
+AG-2023-00133,Damaged in transit,Yes
+AG-2023-00166,Damaged in transit,Yes
+AG-2023-00178,Damaged in transit,Yes
+AG-2023-00190,Not as described,Yes
+AG-2023-00205,Damaged in transit,Yes
+AG-2023-00224,Wrong item,Yes
+AG-2023-00227,Damaged in transit,Yes
+AG-2023-00230,Changed mind,Yes
+AG-2023-00234,Changed mind,Yes
+AG-2023-00253,Changed mind,Yes
+AG-2023-00258,Changed mind,Yes
+AG-2023-00279,Changed mind,Yes
+AG-2023-00305,Wrong item,Yes
+AG-2023-00313,Wrong item,Yes
+AG-2023-00319,Late delivery,Yes
+AG-2023-00323,Damaged in transit,Yes
+AG-2023-00346,Late delivery,Yes
+AG-2023-00360,Not as described,Yes
+AG-2023-00363,Late delivery,Yes
+AG-2023-00365,Not as described,Yes
+AG-2023-00372,Changed mind,Yes
+AG-2023-00386,Changed mind,Yes
+AG-2023-00391,Damaged in transit,Yes
+AG-2023-00402,Changed mind,Yes
+AG-2023-00412,Wrong item,Yes
+AG-2023-00440,Late delivery,Yes
+AG-2023-00446,Late delivery,Yes
+AG-2023-00450,Not as described,Yes
+AG-2023-00455,Changed mind,Yes
+AG-2023-00461,Not as described,Yes
+AG-2023-00462,Damaged in transit,Yes
+AG-2023-00475,Not as described,Yes
+AG-2023-00478,Wrong item,Yes
+AG-2023-00480,Wrong item,Yes
+AG-2023-00493,Not as described,Yes
+AG-2023-00498,Damaged in transit,Yes
+AG-2023-00509,Not as described,Yes
+AG-2023-00510,Damaged in transit,Yes
+AG-2023-00515,Changed mind,Yes
+AG-2023-00546,Changed mind,Yes
+AG-2023-00547,Not as described,Yes
+AG-2023-00560,Damaged in transit,Yes
+AG-2023-00582,Late delivery,Yes
+AG-2023-00583,Wrong item,Yes
+AG-2023-00589,Late delivery,Yes
+AG-2023-00611,Damaged in transit,Yes
+AG-2023-00615,Changed mind,Yes
+AG-2023-00645,Damaged in transit,Yes
+AG-2023-00658,Late delivery,Yes
+AG-2023-00682,Not as described,Yes
+AG-2023-00705,Damaged in transit,Yes
+AG-2023-00729,Wrong item,Yes
+AG-2023-00733,Changed mind,Yes
+AG-2023-00743,Damaged in transit,Yes
+AG-2023-00748,Wrong item,Yes
+AG-2023-00772,Damaged in transit,Yes
+AG-2023-00779,Damaged in transit,Yes
+AG-2023-00790,Damaged in transit,Yes
+AG-2023-00809,Changed mind,Yes
+AG-2023-00813,Not as described,Yes
+AG-2023-00820,Damaged in transit,Yes
+AG-2023-00825,Damaged in transit,Yes
+AG-2023-00844,Not as described,Yes
+AG-2023-00845,Changed mind,Yes
+AG-2023-00848,Damaged in transit,Yes
+AG-2023-00852,Late delivery,Yes
+AG-2023-00854,Not as described,Yes
+AG-2023-00886,Changed mind,Yes
+AG-2023-00892,Late delivery,Yes
+AG-2023-00893,Damaged in transit,Yes
+AG-2023-00895,Wrong item,Yes
+AG-2023-00909,Damaged in transit,Yes
+AG-2023-00936,Not as described,Yes
+AG-2023-00953,Late delivery,Yes
+AG-2023-00955,Changed mind,Yes
+AG-2023-00970,Not as described,Yes
+AG-2023-00971,Damaged in transit,Yes
+AG-2023-00990,Damaged in transit,Yes
+AG-2023-00997,Changed mind,Yes
+AG-2023-01033,Damaged in transit,Yes
+AG-2023-01054,Damaged in transit,Yes
+AG-2023-01062,Not as described,Yes
+AG-2023-01069,Not as described,Yes
+AG-2023-01087,Wrong item,Yes
+AG-2024-01104,Damaged in transit,Yes
+AG-2024-01109,Not as described,Yes
+AG-2024-01116,Not as described,Yes
+AG-2024-01121,Damaged in transit,Yes
+AG-2024-01140,Changed mind,Yes
+AG-2024-01146,Wrong item,Yes
+AG-2024-01150,Wrong item,Yes
+AG-2024-01151,Late delivery,Yes
+AG-2024-01156,Changed mind,Yes
+AG-2024-01158,Late delivery,Yes
+AG-2024-01161,Changed mind,Yes
+AG-2024-01165,Damaged in transit,Yes
+AG-2024-01184,Damaged in transit,Yes
+AG-2024-01201,Changed mind,Yes
+AG-2024-01227,Late delivery,Yes
+AG-2024-01229,Damaged in transit,Yes
+AG-2024-01232,Damaged in transit,Yes
+AG-2024-01241,Damaged in transit,Yes
+AG-2024-01247,Wrong item,Yes
+AG-2024-01254,Changed mind,Yes
+AG-2024-01255,Not as described,Yes
+AG-2024-01265,Not as described,Yes
+AG-2024-01268,Late delivery,Yes
+AG-2024-01285,Not as described,Yes
+AG-2024-01286,Damaged in transit,Yes
+AG-2024-01296,Wrong item,Yes
+AG-2024-01308,Damaged in transit,Yes
+AG-2024-01309,Damaged in transit,Yes
+AG-2024-01312,Late delivery,Yes
+AG-2024-01315,Not as described,Yes
+AG-2024-01351,Damaged in transit,Yes
+AG-2024-01372,Wrong item,Yes
+AG-2024-01373,Not as described,Yes
+AG-2024-01391,Not as described,Yes
+AG-2024-01397,Not as described,Yes
+AG-2024-01409,Wrong item,Yes
+AG-2024-01413,Not as described,Yes
+AG-2024-01422,Wrong item,Yes
+AG-2024-01425,Damaged in transit,Yes
+AG-2024-01432,Damaged in transit,Yes
+AG-2024-01435,Damaged in transit,Yes
+AG-2024-01437,Changed mind,Yes
+AG-2024-01439,Not as described,Yes
+AG-2024-01462,Changed mind,Yes
+AG-2024-01463,Wrong item,Yes
+AG-2024-01473,Changed mind,Yes
+AG-2024-01485,Not as described,Yes
+AG-2024-01495,Changed mind,Yes
+AG-2024-01499,Not as described,Yes
+AG-2024-01507,Not as described,Yes
+AG-2024-01527,Changed mind,Yes
+AG-2024-01534,Not as described,Yes
+AG-2024-01558,Not as described,Yes
+AG-2024-01560,Late delivery,Yes
+AG-2024-01565,Not as described,Yes
+AG-2024-01579,Damaged in transit,Yes
+AG-2024-01583,Changed mind,Yes
+AG-2024-01586,Late delivery,Yes
+AG-2024-01587,Damaged in transit,Yes
+AG-2024-01600,Not as described,Yes
+AG-2024-01601,Damaged in transit,Yes
+AG-2024-01602,Wrong item,Yes
+AG-2024-01609,Wrong item,Yes
+AG-2024-01627,Damaged in transit,Yes
+AG-2024-01631,Not as described,Yes
+AG-2024-01638,Wrong item,Yes
+AG-2024-01644,Damaged in transit,Yes
+AG-2024-01663,Changed mind,Yes
+AG-2024-01667,Not as described,Yes
+AG-2024-01679,Damaged in transit,Yes
+AG-2024-01686,Damaged in transit,Yes
+AG-2024-01694,Changed mind,Yes
+AG-2024-01747,Late delivery,Yes
+AG-2024-01753,Damaged in transit,Yes
+AG-2024-01768,Wrong item,Yes
+AG-2024-01769,Damaged in transit,Yes
+AG-2024-01785,Not as described,Yes
+AG-2024-01798,Wrong item,Yes
+AG-2024-01799,Damaged in transit,Yes
+AG-2024-01808,Not as described,Yes
+AG-2024-01809,Not as described,Yes
+AG-2024-01850,Changed mind,Yes
+AG-2024-01856,Not as described,Yes
+AG-2024-01890,Damaged in transit,Yes
+AG-2024-01892,Not as described,Yes
+AG-2024-01893,Late delivery,Yes
+AG-2024-01906,Not as described,Yes
+AG-2024-01910,Damaged in transit,Yes
+AG-2024-01912,Not as described,Yes
+AG-2024-01943,Wrong item,Yes
+AG-2024-01950,Not as described,Yes
+AG-2024-01974,Late delivery,Yes
+AG-2024-01982,Damaged in transit,Yes
+AG-2024-02001,Damaged in transit,Yes
+AG-2024-02006,Changed mind,Yes
+AG-2024-02011,Not as described,Yes
+AG-2024-02030,Damaged in transit,Yes
+AG-2024-02031,Changed mind,Yes
+AG-2024-02050,Damaged in transit,Yes
+AG-2024-02061,Wrong item,Yes
+AG-2024-02075,Not as described,Yes
+AG-2024-02081,Changed mind,Yes
+AG-2024-02087,Not as described,Yes
+AG-2024-02102,Wrong item,Yes
+AG-2024-02104,Not as described,Yes
+AG-2024-02105,Damaged in transit,Yes
+AG-2024-02111,Late delivery,Yes
+AG-2024-02116,Not as described,Yes
+AG-2024-02120,Late delivery,Yes
+AG-2024-02135,Not as described,Yes
+AG-2024-02136,Changed mind,Yes
+AG-2024-02140,Not as described,Yes
+AG-2024-02169,Damaged in transit,Yes
+AG-2024-02185,Damaged in transit,Yes
+AG-2024-02186,Late delivery,Yes
+AG-2024-02187,Damaged in transit,Yes
+AG-2024-02194,Damaged in transit,Yes
+AG-2024-02198,Not as described,Yes
+AG-2024-02210,Not as described,Yes
+AG-2024-02211,Not as described,Yes
+AG-2024-02234,Changed mind,Yes
+AG-2024-02237,Damaged in transit,Yes
+AG-2024-02238,Damaged in transit,Yes
+AG-2024-02257,Changed mind,Yes
+AG-2024-02259,Changed mind,Yes
+AG-2024-02264,Late delivery,Yes
+AG-2024-02271,Changed mind,Yes
+AG-2024-02276,Wrong item,Yes
+AG-2024-02281,Not as described,Yes
+AG-2024-02283,Wrong item,Yes
+AG-2024-02291,Not as described,Yes
+AG-2024-02299,Damaged in transit,Yes
+AG-2024-02313,Wrong item,Yes
+AG-2024-02316,Damaged in transit,Yes
+AG-2024-02318,Damaged in transit,Yes
+AG-2024-02335,Late delivery,Yes
+AG-2024-02338,Not as described,Yes
+AG-2024-02351,Changed mind,Yes
+AG-2024-02353,Late delivery,Yes
+AG-2024-02371,Late delivery,Yes
+AG-2024-02373,Not as described,Yes
+AG-2024-02374,Damaged in transit,Yes
+AG-2024-02379,Not as described,Yes
+AG-2024-02380,Damaged in transit,Yes
+AG-2024-02400,Not as described,Yes
+AG-2024-02406,Not as described,Yes
+AG-2024-02413,Damaged in transit,Yes
+AG-2024-02421,Damaged in transit,Yes
+AG-2024-02434,Changed mind,Yes
+AG-2024-02435,Wrong item,Yes
+AG-2024-02438,Damaged in transit,Yes
+AG-2024-02447,Not as described,Yes
+AG-2024-02457,Damaged in transit,Yes
+AG-2024-02462,Changed mind,Yes
+AG-2024-02465,Wrong item,Yes
+AG-2024-02468,Damaged in transit,Yes
+AG-2024-02486,Late delivery,Yes
+AG-2024-02510,Late delivery,Yes
+AG-2025-02518,Late delivery,Yes
+AG-2025-02523,Damaged in transit,Yes
+AG-2025-02530,Not as described,Yes
+AG-2025-02531,Damaged in transit,Yes
+AG-2025-02538,Damaged in transit,Yes
+AG-2025-02548,Damaged in transit,Yes
+AG-2025-02564,Changed mind,Yes
+AG-2025-02570,Wrong item,Yes
+AG-2025-02575,Damaged in transit,Yes
+AG-2025-02645,Changed mind,Yes
+AG-2025-02658,Late delivery,Yes
+AG-2025-02663,Damaged in transit,Yes
+AG-2025-02676,Late delivery,Yes
+AG-2025-02679,Damaged in transit,Yes
+AG-2025-02680,Damaged in transit,Yes
+AG-2025-02684,Damaged in transit,Yes
+AG-2025-02688,Damaged in transit,Yes
+AG-2025-02725,Wrong item,Yes
+AG-2025-02738,Not as described,Yes
+AG-2025-02744,Not as described,Yes
+AG-2025-02761,Not as described,Yes
+AG-2025-02775,Wrong item,Yes
+AG-2025-02806,Late delivery,Yes
+AG-2025-02827,Damaged in transit,Yes
+AG-2025-02863,Late delivery,Yes
+AG-2025-02868,Wrong item,Yes
+AG-2025-02879,Wrong item,Yes
+AG-2025-02898,Late delivery,Yes
+AG-2025-02911,Late delivery,Yes
+AG-2025-02921,Changed mind,Yes
+AG-2025-02946,Not as described,Yes
+AG-2025-02949,Wrong item,Yes
+AG-2025-02950,Not as described,Yes
+AG-2025-02956,Damaged in transit,Yes
+AG-2025-02962,Not as described,Yes
+AG-2025-02975,Changed mind,Yes
+AG-2025-02983,Late delivery,Yes
+AG-2025-02985,Damaged in transit,Yes
+AG-2025-02988,Damaged in transit,Yes
+AG-2025-02989,Damaged in transit,Yes
+AG-2025-02993,Late delivery,Yes
+AG-2025-02994,Damaged in transit,Yes
+AG-2025-02998,Changed mind,Yes
+AG-2025-03005,Not as described,Yes
+AG-2025-03009,Damaged in transit,Yes
+AG-2025-03015,Not as described,Yes
+AG-2025-03027,Damaged in transit,Yes
+AG-2025-03034,Changed mind,Yes
+AG-2025-03054,Late delivery,Yes
+AG-2025-03059,Not as described,Yes
+AG-2025-03060,Changed mind,Yes
+AG-2025-03062,Damaged in transit,Yes
+AG-2025-03078,Damaged in transit,Yes
+AG-2025-03083,Damaged in transit,Yes
+AG-2025-03085,Damaged in transit,Yes
+AG-2025-03088,Late delivery,Yes
+AG-2025-03091,Changed mind,Yes
+AG-2025-03101,Wrong item,Yes
+AG-2025-03105,Damaged in transit,Yes
+AG-2025-03107,Late delivery,Yes
+AG-2025-03108,Changed mind,Yes
+AG-2025-03140,Wrong item,Yes
+AG-2025-03141,Late delivery,Yes
+AG-2025-03146,Wrong item,Yes
+AG-2025-03150,Wrong item,Yes
+AG-2025-03151,Not as described,Yes
+AG-2025-03152,Damaged in transit,Yes
+AG-2025-03171,Not as described,Yes
+AG-2025-03180,Changed mind,Yes
+AG-2025-03190,Wrong item,Yes
+AG-2025-03191,Damaged in transit,Yes
+AG-2025-03207,Damaged in transit,Yes
+AG-2025-03215,Damaged in transit,Yes
+AG-2025-03234,Late delivery,Yes
+AG-2025-03260,Damaged in transit,Yes
+AG-2025-03277,Not as described,Yes
+AG-2025-03279,Not as described,Yes
+AG-2025-03291,Not as described,Yes
+AG-2025-03293,Not as described,Yes
+AG-2025-03294,Changed mind,Yes
+AG-2025-03307,Wrong item,Yes
+AG-2025-03316,Damaged in transit,Yes
+AG-2025-03320,Not as described,Yes
+AG-2025-03328,Damaged in transit,Yes
+AG-2025-03358,Damaged in transit,Yes
+AG-2025-03370,Damaged in transit,Yes
+AG-2025-03375,Not as described,Yes
+AG-2025-03398,Damaged in transit,Yes
+AG-2025-03409,Wrong item,Yes
+AG-2025-03412,Damaged in transit,Yes
+AG-2025-03414,Damaged in transit,Yes
+AG-2025-03424,Not as described,Yes
+AG-2025-03430,Changed mind,Yes
+AG-2025-03438,Not as described,Yes
+AG-2025-03448,Damaged in transit,Yes
+AG-2025-03465,Changed mind,Yes
+AG-2025-03472,Damaged in transit,Yes
+AG-2025-03478,Damaged in transit,Yes
+AG-2025-03498,Damaged in transit,Yes
+AG-2025-03506,Not as described,Yes
+AG-2025-03523,Late delivery,Yes
+AG-2025-03527,Not as described,Yes
+AG-2025-03536,Not as described,Yes
+AG-2025-03545,Damaged in transit,Yes
+AG-2025-03549,Late delivery,Yes
+AG-2025-03550,Changed mind,Yes
+AG-2025-03553,Not as described,Yes
+AG-2025-03557,Damaged in transit,Yes
+AG-2025-03564,Late delivery,Yes
+AG-2025-03576,Damaged in transit,Yes
+AG-2025-03587,Not as described,Yes
+AG-2025-03590,Not as described,Yes
+AG-2025-03602,Wrong item,Yes
+AG-2025-03609,Damaged in transit,Yes
+AG-2025-03612,Changed mind,Yes
+AG-2025-03622,Changed mind,Yes
+AG-2025-03623,Damaged in transit,Yes
+AG-2025-03635,Wrong item,Yes
+AG-2025-03642,Wrong item,Yes
+AG-2025-03658,Damaged in transit,Yes
+AG-2025-03659,Changed mind,Yes
+AG-2025-03665,Wrong item,Yes
+AG-2025-03682,Wrong item,Yes
+AG-2025-03690,Damaged in transit,Yes
+AG-2025-03704,Changed mind,Yes
+AG-2025-03705,Damaged in transit,Yes
+AG-2025-03718,Changed mind,Yes
+AG-2025-03722,Late delivery,Yes
+AG-2025-03735,Damaged in transit,Yes
+AG-2025-03761,Damaged in transit,Yes
+AG-2025-03796,Not as described,Yes
+AG-2025-03859,Late delivery,Yes
+AG-2025-03865,Late delivery,Yes
+AG-2025-03867,Damaged in transit,Yes
+AG-2025-03882,Not as described,Yes
+AG-2025-03893,Damaged in transit,Yes
+AG-2025-03913,Not as described,Yes
+AG-2025-03922,Not as described,Yes
+AG-2025-03933,Wrong item,Yes
+AG-2025-03939,Damaged in transit,Yes
+AG-2025-03959,Not as described,Yes
+AG-2025-03974,Damaged in transit,Yes
+AG-2025-03978,Not as described,Yes
+AG-2025-03990,Late delivery,Yes
+AG-2025-03999,Damaged in transit,Yes
+AG-2025-04001,Damaged in transit,Yes
+AG-2025-04008,Wrong item,Yes
+AG-2025-04011,Not as described,Yes
+AG-2025-04016,Not as described,Yes
+AG-2025-04024,Late delivery,Yes
+AG-2025-04033,Late delivery,Yes
+AG-2025-04042,Damaged in transit,Yes
+AG-2025-04048,Changed mind,Yes
+AG-2025-04051,Damaged in transit,Yes
+AG-2025-04058,Damaged in transit,Yes
+AG-2025-04060,Late delivery,Yes
+AG-2025-04061,Wrong item,Yes
+AG-2025-04067,Changed mind,Yes
+AG-2025-04076,Late delivery,Yes
+AG-2025-04091,Not as described,Yes
+AG-2025-04104,Changed mind,Yes
+AG-2025-04107,Damaged in transit,Yes
+AG-2025-04112,Changed mind,Yes
+AG-2025-04113,Damaged in transit,Yes
+AG-2025-04126,Damaged in transit,Yes
+AG-2025-04127,Damaged in transit,Yes
+AG-2025-04129,Damaged in transit,Yes
+AG-2025-04140,Wrong item,Yes
+AG-2025-04147,Late delivery,Yes
+AG-2025-04148,Changed mind,Yes
+AG-2025-04169,Not as described,Yes
+AG-2025-04171,Late delivery,Yes
+AG-2025-04174,Damaged in transit,Yes
+AG-2025-04177,Damaged in transit,Yes
+AG-2025-04179,Wrong item,Yes
+AG-2025-04185,Late delivery,Yes
+AG-2025-04187,Changed mind,Yes
+AG-2025-04192,Not as described,Yes
+AG-2026-04219,Changed mind,Yes
+AG-2026-04222,Damaged in transit,Yes
+AG-2026-04224,Not as described,Yes
+AG-2026-04227,Damaged in transit,Yes
+AG-2026-04242,Wrong item,Yes
+AG-2026-04317,Damaged in transit,Yes
+AG-2026-04342,Damaged in transit,Yes
+AG-2026-04370,Late delivery,Yes
+AG-2026-04374,Damaged in transit,Yes
+AG-2026-04384,Not as described,Yes
+AG-2026-04396,Changed mind,Yes
+AG-2026-04411,Late delivery,Yes
+AG-2026-04412,Late delivery,Yes
+AG-2026-04427,Not as described,Yes
+AG-2026-04435,Late delivery,Yes
+AG-2026-04439,Not as described,Yes
+AG-2026-04444,Late delivery,Yes
+AG-2026-04458,Damaged in transit,Yes
+AG-2026-04467,Wrong item,Yes
+AG-2026-04484,Damaged in transit,Yes
+AG-2026-04488,Damaged in transit,Yes
+AG-2026-04497,Not as described,Yes
+AG-2026-04503,Not as described,Yes
+AG-2026-04510,Damaged in transit,Yes
+AG-2026-04514,Damaged in transit,Yes
+AG-2026-04526,Wrong item,Yes
+AG-2026-04527,Damaged in transit,Yes
+AG-2026-04528,Damaged in transit,Yes
+AG-2026-04530,Late delivery,Yes
+AG-2026-04549,Damaged in transit,Yes
+AG-2026-04556,Late delivery,Yes
+AG-2026-04576,Not as described,Yes
+AG-2026-04582,Changed mind,Yes
+AG-2026-04614,Damaged in transit,Yes
+AG-2026-04624,Late delivery,Yes
+AG-2026-04626,Not as described,Yes
+AG-2026-04660,Not as described,Yes
+AG-2026-04667,Changed mind,Yes
+AG-2026-04696,Late delivery,Yes
+AG-2026-04703,Not as described,Yes
+AG-2026-04707,Not as described,Yes
+AG-2026-04712,Changed mind,Yes
+AG-2026-04716,Changed mind,Yes
+AG-2026-04720,Wrong item,Yes
+AG-2026-04724,Wrong item,Yes
+AG-2026-04726,Damaged in transit,Yes
+AG-2026-04742,Changed mind,Yes
+AG-2026-04743,Wrong item,Yes
+AG-2026-04752,Late delivery,Yes
+AG-2026-04762,Not as described,Yes
+AG-2026-04765,Changed mind,Yes
+AG-2026-04777,Changed mind,Yes
+AG-2026-04806,Damaged in transit,Yes
+AG-2026-04821,Damaged in transit,Yes
+AG-2026-04843,Changed mind,Yes
+AG-2026-04863,Not as described,Yes
+AG-2026-04866,Damaged in transit,Yes
+AG-2026-04878,Damaged in transit,Yes
+AG-2026-04880,Not as described,Yes
+AG-2026-04887,Damaged in transit,Yes
+AG-2026-04917,Late delivery,Yes
+AG-2026-04932,Not as described,Yes
+AG-2026-04937,Damaged in transit,Yes
+AG-2026-04938,Damaged in transit,Yes
+AG-2026-04946,Changed mind,Yes
+AG-2026-04948,Late delivery,Yes
+AG-2026-04950,Late delivery,Yes
+AG-2026-04964,Damaged in transit,Yes
+AG-2026-04965,Not as described,Yes
+AG-2026-04981,Wrong item,Yes
+AG-2026-04985,Changed mind,Yes
+AG-2026-04986,Not as described,Yes
+AG-2026-05002,Damaged in transit,Yes
+AG-2026-05004,Changed mind,Yes
+AG-2026-05030,Not as described,Yes
+AG-2026-05057,Not as described,Yes
+AG-2026-05077,Changed mind,Yes
+AG-2026-05090,Changed mind,Yes
+AG-2026-05106,Damaged in transit,Yes
+AG-2026-05107,Damaged in transit,Yes
+AG-2026-05121,Late delivery,Yes
+AG-2026-05126,Late delivery,Yes
+AG-2026-05129,Late delivery,Yes
+AG-2026-05149,Changed mind,Yes
+AG-2026-05152,Late delivery,Yes
+AG-2026-05171,Not as described,Yes
+AG-2026-05176,Damaged in transit,Yes
+AG-2026-05182,Changed mind,Yes
+AG-2026-05185,Not as described,Yes
+AG-2026-05195,Changed mind,Yes
+AG-2026-05198,Not as described,Yes
+AG-2026-05223,Wrong item,Yes
+AG-2026-05263,Wrong item,Yes
+AG-2026-05268,Damaged in transit,Yes
+AG-2026-05279,Not as described,Yes
+AG-2026-05285,Damaged in transit,Yes
+AG-2026-05292,Late delivery,Yes
+AG-2026-05315,Late delivery,Yes
+AG-2026-05323,Damaged in transit,Yes
+AG-2026-05325,Late delivery,Yes
+AG-2026-05332,Damaged in transit,Yes
+AG-2026-05336,Wrong item,Yes
+AG-2026-05337,Late delivery,Yes
+AG-2026-05354,Damaged in transit,Yes
+AG-2026-05363,Damaged in transit,Yes
+AG-2026-05364,Damaged in transit,Yes
+AG-2026-05365,Late delivery,Yes
+AG-2026-05368,Wrong item,Yes
+AG-2026-05370,Late delivery,Yes
+AG-2026-05371,Wrong item,Yes
+AG-2026-05380,Changed mind,Yes
+AG-2026-05391,Damaged in transit,Yes
+AG-2026-05397,Changed mind,Yes
+AG-2026-05405,Not as described,Yes
+AG-2026-05435,Changed mind,Yes
+AG-2026-05437,Late delivery,Yes
+AG-2026-05448,Wrong item,Yes
+AG-2026-05451,Changed mind,Yes
+AG-2026-05454,Damaged in transit,Yes
+AG-2026-05457,Damaged in transit,Yes
+AG-2026-05461,Not as described,Yes
+AG-2026-05465,Changed mind,Yes
+AG-2026-05486,Damaged in transit,Yes
+AG-2026-05493,Not as described,Yes
+AG-2026-05498,Damaged in transit,Yes
+AG-2026-05501,Late delivery,Yes
+AG-2026-05505,Not as described,Yes
+AG-2026-05506,Not as described,Yes
+AG-2026-05529,Not as described,Yes
+AG-2026-05545,Damaged in transit,Yes
+AG-2026-05566,Changed mind,Yes
+AG-2026-05578,Not as described,Yes
