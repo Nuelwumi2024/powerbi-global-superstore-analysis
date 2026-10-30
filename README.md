@@ -8,40 +8,27 @@
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-DAX%20%7C%20Power%20Query-F2C811?logo=powerbi&logoColor=black) ![Python](https://img.shields.io/badge/Python-data%20generation-3776AB?logo=python&logoColor=white) ![Data](https://img.shields.io/badge/Data-synthetic-2A9D8F)
 
-**Contents:** [Scenario](#1-the-scenario) · [Questions](#2-business-questions) · [Data model](#3-data-model) · [Metrics](#4-metrics-what-each-kpi-means-and-how-it-is-calculated) · [Build guide](#5-build-guide) · [Findings](#6-what-the-data-shows-verify-against-your-build) · [Recommendations](#7-recommendations) · [Skills](#8-skills-demonstrated)
+**Contents:** [Summary](#executive-summary) · [Scenario](#1-the-scenario) · [The story](#the-story-chapter-by-chapter) · [Questions](#2-business-questions) · [Data model](#3-data-model) · [Metrics](#4-metrics-what-each-kpi-means-and-how-it-is-calculated) · [Build guide](#5-build-guide) · [Findings](#6-what-the-data-shows-verify-against-your-build) · [Recommendations](#7-recommendations) · [Challenges](#challenges-i-solved) · [Skills](#8-skills-demonstrated)
 
 ---
 
-## Dashboard Preview
+## Executive Summary
 
-A four-page report that moves from *how are we doing* to *where is the money leaking*. Key readings below each page come directly from the report.
+**The question:** Atlas Global Retail grew sales 43% in four years but profit only 6%. Where did the money go?
 
-### Page 1: Executive Overview
-![Executive Overview](images/page1-executive-overview.png)
+**The answer:** it did not disappear in one place. It leaked through **discounting**. Average discounts crept from 10.8% to 14.5%, and the 15.8% of order lines discounted 30% or more sold $505.5K of goods at a **$104.9K loss**. Two furniture lines (Tables and Bookcases), two weak markets (EMEA and LATAM) and costly premium shipping made it worse.
 
-**$4.5M sales, $488.8K profit, 10.9% margin** across about 6K orders and 1K customers (Jan 2023 to Oct 2026), with Year, Market and Segment slicers. Monthly sales are plotted in date order against profit margin, which shows Q4 sales peaks and a margin that has drifted from the mid-teens in 2023 towards 10%. A gauge shows **profit of $488.8K against a target of $579.3K, about 84% of target**, and a chart compares sales with target by market: **sales are within about 1% of target overall, so the shortfall is in profit, not in sales volume.**
+**The proof it is a margin problem, not a sales problem:** sales are within about 1% of target, but profit is **$488.8K against a $579.3K target (84%)**.
 
-### Page 2: Where Profit Is Made and Lost
-![Where Profit Is Made and Lost](images/page2-where-profit-is-made-and-lost.png)
-
-**Technology earns the most profit, led by Copiers, Phones and Computers. Office Supplies has the best margin (22.8%) and Furniture the worst (2.6%).** Bookcases are loss-making. A Market × Category matrix shows where margin is thinnest: **Furniture loses money in EMEA (-3.5%) and LATAM (-2.0%)**, while Canada is the strongest market in every category (17.8% overall, against 5.1% in EMEA and 6.0% in LATAM). A map shows margin by country, and a treemap shows how sales are split by category and sub-category.
-
-### Page 3: Discount Damage
-![Discount Damage](images/page3-discount-damage.png)
-
-**Orders discounted 30% or more bring in $505.5K of sales and lose $104.9K.** The average discount has crept up every year, and margin falls from about 22% with no discount to negative at high discounts. All ten Tables and Bookcases products are loss-making, and 14% of order lines lose money.
-
-### Page 4: Operations
-![Operations](images/page4-operations.png)
-
-**Faster shipping costs margin:** Standard Class earns about 12% against about 6% for Same Day. Of 562 returned orders, **"Damaged in transit" is the top reason (32%)**, followed by "Not as described" (23%). Average ship days move between about 3.9 and 4.7 days month to month, with no clear improvement over the period.
+**The fix:** cap discounts at 20% and reprice the loss-making furniture. Holding sales volume constant, a 20% cap alone would have added about **$125K of profit (+26%)**, enough to close the profit gap to target.
 
 ---
 
+## 1. The Scenario
 
 **Atlas Global Retail** sells technology, furniture and office supplies to consumers, corporates and home offices in five markets: US, Canada, EMEA, APAC and LATAM.
 
-It is November 2026. You have just joined as **Commercial Data Analyst**, and the 2027 budget is due in six weeks. In your first week the COO shows you one slide (January to October each year, so the comparison is like for like):
+It is November 2026. I have just joined as **Commercial Data Analyst**, and the 2027 budget is due in six weeks. In my first week the COO shows me one slide (January to October each year, so the comparison is like for like):
 
 | Jan-Oct | 2023 | 2026 | Change |
 |---|---|---|---|
@@ -51,7 +38,78 @@ It is November 2026. You have just joined as **Commercial Data Analyst**, and th
 
 > *"We're selling more every year and making almost no extra money. Where is the profit going, and what do we do about it before the 2027 budget is set?"*
 
-Your job is to find out, and to hand the COO something she can act on.
+The brief is to find out, and to hand the COO something she can act on. I had **9,818 order lines** covering 1 January 2023 to 28 October 2026, across customers, products, returns and annual targets.
+
+---
+
+## The Story, Chapter by Chapter
+
+I built a four-page report and structured it like an investigation: first confirm the problem, then find where it sits, then find the cause, then check the smaller leaks.
+
+### Chapter 1: Is the problem real? (Executive Overview)
+
+![Executive Overview](images/page1-executive-overview.png)
+
+**What I did.** I loaded five tables into Power BI, cleaned them in Power Query, modelled them as a star schema and wrote the core measures in DAX: sales, profit, margin, orders, customers, AOV and units. I added target measures that match each market's budget to the selected year, and a gauge comparing profit with its target.
+
+**What I found.** The business is healthy on the surface: **$4.5M of sales, about 6K orders, 1K customers and a $800 average order**. Monthly sales climb with clear Q4 peaks, but the margin line drifts from the mid-teens in 2023 towards 10%. Sales are within about 1% of target in every market, while **profit sits at 84% of target** ($488.8K against $579.3K).
+
+**So what.** The COO is right, and the problem is specific: Atlas is hitting its sales numbers and missing its profit numbers. Selling harder will not fix it, so I stopped asking *how much* we sell and started asking *what we make on it*.
+
+### Chapter 2: Where does the profit come from and where does it go? (Products and markets)
+
+![Where Profit Is Made and Lost](images/page2-where-profit-is-made-and-lost.png)
+
+**What I did.** I compared profit and margin across categories, sub-categories, markets and countries, and built a Market × Category matrix to cut both at once.
+
+**What I found.**
+- **Technology earns the money** ($314K of profit, led by Copiers, Phones and Computers). **Office Supplies is the most efficient** (22.8% margin) but small.
+- **Furniture is the problem child:** $1.5M of sales at only a **2.6% margin**. Tables and Bookcases are loss-making, even though they are among the biggest sellers.
+- **The matrix tells the sharper story:** Furniture loses money in **EMEA (-3.5%) and LATAM (-2.0%)**. Canada is the strongest market in every category (17.8% overall), while **EMEA (5.1%) and LATAM (6.0%)** are the weakest, even though EMEA is a $0.93M market.
+
+**So what.** Volume is hiding the damage. The products and regions that look busiest are among the least profitable, which pointed me towards pricing.
+
+### Chapter 3: Why? (Discount damage)
+
+![Discount Damage](images/page3-discount-damage.png)
+
+**What I did.** I banded every order line by discount (none, low, medium, high), measured margin in each band, tracked the average discount by year, and isolated lines discounted 30% or more with their own sales, profit and loss share.
+
+**What I found.** This is where the profit goes.
+- **Margin collapses as discounts rise:** about 22% with no discount, 14% at low discounts, 3% at medium discounts, and **negative at high discounts**.
+- **Discounts have crept up every year,** from 10.8% on average in 2023 to 14.5% in 2026.
+- **Heavy discounts (30%+) generated $505.5K of sales and lost $104.9K.** About **14% of all order lines lose money.**
+- **All ten Tables and Bookcases products are loss-making,** and Tables, one of the biggest sellers, sits at the bottom of the discount-versus-profit scatter with negative profit.
+
+**So what.** This is the root cause. Atlas is buying growth with discounts, and the deepest discounts cost more than they bring in. It also explains why sales are on target while profit is not.
+
+### Chapter 4: Are there other leaks? (Shipping and returns)
+
+![Operations](images/page4-operations.png)
+
+**What I did.** I compared margin by ship mode and analysed the 562 returned orders by reason.
+
+**What I found.** The smaller leaks are real but secondary. **Same Day shipping earns about 6% margin against 12% for Standard Class**, so speed is being given away. Among returns, **"damaged in transit" is the top reason (32%)**, followed by "not as described" (23%), which points to packaging and carrier issues, not product quality. Average ship days move between about 3.9 and 4.7 days with no clear improvement.
+
+**So what.** Shipping and returns are worth tidying up, but discounting is the big lever.
+
+---
+
+## Closing the Story: What I Would Tell the COO
+
+> *"You do not have a sales problem. You have a pricing discipline problem. Sales are on target, but discounts have crept up every year, and the deepest ones lose money. Fix discounting first."*
+
+| # | Decision for the 2027 budget | Evidence |
+|---|---|---|
+| 1 | **Cap discounts at 20%** and require approval above that | 30%+ lines lose $104.9K; capping at 20%, with volume held constant, would add about **$125K profit (+26%)** and close the profit gap to target |
+| 2 | **Reprice or delist Tables and Bookcases** | Loss-making across all ten products |
+| 3 | **Review EMEA and LATAM discounting** | 5-6% margins against 18% in Canada |
+| 4 | **Charge for Same Day and First Class shipping** | Same Day earns half the margin of Standard |
+| 5 | **Fix packaging and carrier issues** | Damage in transit drives 32% of returns |
+
+**Honest caveats:** the $125K estimate holds sales volume constant (in reality some customers would buy less at a smaller discount), and the data is synthetic. In a real engagement I would test the cap on one market first and track the effect.
+
+---
 
 ## 2. Business Questions
 
@@ -174,6 +232,19 @@ The data covers **1 January 2023 to 28 October 2026** (2026 is year to date), so
 | 3 | **Review EMEA and LATAM discount policy** | Large markets with 5-6% margin |
 | 4 | **Charge for Same Day and First Class shipping** | Thin margins at these speeds |
 | 5 | **Reduce damage in transit** (packaging, carrier review) | It is the top reason for returns (32% of returned orders) |
+
+## Challenges I Solved
+
+Real projects do not run cleanly. These are the problems I hit and how I fixed them.
+
+| Problem | Cause | Fix |
+|---|---|---|
+| **Total Sales showed one $4.5M bar for every market** | The market table did not filter sales | Checked relationship direction and filtered through `customers[Market]` |
+| **"Ambiguous paths" relationship error** | `targets` connected to the model by a second route, creating two paths to `orders` | Removed the extra relationship and matched targets in DAX with `TREATAS` on Year and Market |
+| **Target bars were equal for every market** | A raw column was aggregated instead of a measure | Replaced it with a `Sales Target` measure |
+| **Gauge showed "Count of ProfitTarget"** | The default aggregation on a numeric column was Count | Used the `Profit Target` measure, with a `Gauge Max` measure so the gauge scales sensibly |
+| **Months plotted out of order** | Year-Month is text, so it sorted by value | Sorted the axis by Year-Month ascending |
+| **Misleading numbers on cards (1K, 6K)** | Auto display units rounded values | Formatted measures as whole currency and set display units |
 
 ## 8. Skills Demonstrated
 
