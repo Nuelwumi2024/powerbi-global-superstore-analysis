@@ -6,30 +6,28 @@ Attach the four dashboard screenshots from `images/` as a carousel and paste the
 
 Sales up 43%. Profit up just 6%. Where did the money go? 📊
 
-I built a Power BI case study to answer that question for Atlas Global Retail, a fictional global retailer. The COO's brief: "We're selling more every year and making almost no extra money. What's going on?"
+I built a Power BI case study to find out. The company, Atlas Global Retail, is fictional, but the question is one every retailer faces. The COO's brief: "We're selling more every year and making almost no extra money."
 
-I analysed 3.9 years of order data (Jan 2023 to Oct 2026) across 5 markets. Here's what I found:
+I analysed 9,800+ order lines (Jan 2023 to Oct 2026) across 5 markets and told the story in four steps:
 
-🔴 Margin fell from 12.9% to 9.6% as average discounts crept up from 10.8% to 14.5%.
+1️⃣ Is the problem real? Yes. Sales are within 1% of target, but profit is 16% short. Atlas is hitting its sales numbers and missing its profit numbers.
 
-💸 Orders discounted 30%+ brought in $505K of sales and lost $105K.
+2️⃣ Where does profit go? Furniture earns only a 2.6% margin, and Tables and Bookcases lose money. Canada earns 18%. EMEA earns 5%.
 
-🛋️ Furniture earns only a 2.6% margin. Tables and Bookcases lose money, and Furniture is loss-making in EMEA and LATAM.
+3️⃣ Why? Discounts. The average discount crept from 10.8% to 14.5%, and orders discounted 30%+ brought in $505K of sales and lost $105K.
 
-🌍 Canada earns an 18% margin. EMEA earns 5%.
+4️⃣ Any other leaks? Same Day shipping earns half the margin of Standard, and "damaged in transit" drives 32% of returns.
 
-🚚 Same Day shipping earns half the margin of Standard (about 6% vs 12%), and "damaged in transit" is the top reason for returns (32%).
-
-🎯 Sales are within 1% of target, but profit is 16% short. This is a margin problem, not a sales problem.
-
-My recommendations: cap discounts at 20%, reprice or delist loss-making furniture, review EMEA and LATAM discounting, and charge for premium shipping.
+My message to the COO: you don't have a sales problem, you have a pricing discipline problem. Capping discounts at 20% would add about $125K of profit (+26%), assuming sales volume holds.
 
 What I built:
 • A star-schema model with Power Query clean-up
 • DAX for margin, budget vs actual, and discount and loss analysis
-• A 4-page report moving from KPI to root cause to action
+• A 4-page report that moves from KPI to root cause to action
 
-The company and data are fictional and synthetic, but the method applies to any retailer.
+I also documented the problems I hit along the way (ambiguous relationships, wrong aggregations, unsorted axes) and how I fixed them.
+
+The data is synthetic, but the method applies to any retailer.
 
 Full case study, DAX and the .pbix file: https://github.com/Nuelwumi2024/powerbi-global-superstore-analysis
 
