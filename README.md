@@ -276,4 +276,4 @@ python src/generate_data.py
 
 ## 10. About
 
-Built by **[Nuelwumi2024](https://github.com/Nuelwumi2024)**. See also: [HR Attrition case study (Power BI)](https://github.com/Nuelwumi2024/powerbi-hr-attrition-dashboard) and the [Excel sales dashboard](https://github.com/Nuelwumi2024/excel-retail-sales-dashboard).
+Built by **[Nuelwumi2024](https://github.com/Nuelwumi2024)**. See also: [HR Attrition case study (Power BI)](https://github.com/Nuelwumi2024/powerbi-hr-attrition-dashboard).
