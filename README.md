@@ -19,12 +19,12 @@ A four-page report that moves from *how are we doing* to *where is the money lea
 ### Page 1: Executive Overview
 ![Executive Overview](images/page1-executive-overview.png)
 
-**$4.5M sales, $488.8K profit, 10.9% margin** across about 6K orders and 1K customers (Jan 2023 to Oct 2026), with Year, Market and Segment slicers. Monthly sales are plotted in date order against profit margin, which shows Q4 sales peaks and a margin that has drifted from the mid-teens in 2023 towards 10%. A target chart breaks the sales target down by market.
+**$4.5M sales, $488.8K profit, 10.9% margin** across about 6K orders and 1K customers (Jan 2023 to Oct 2026), with Year, Market and Segment slicers. Monthly sales are plotted in date order against profit margin, which shows Q4 sales peaks and a margin that has drifted from the mid-teens in 2023 towards 10%. A gauge shows **profit of $488.8K against a target of $579.3K, about 84% of target**, and a chart breaks the sales target down by market.
 
 ### Page 2: Where Profit Is Made and Lost
 ![Where Profit Is Made and Lost](images/page2-where-profit-is-made-and-lost.png)
 
-**Technology earns the most profit, led by Copiers, Phones and Computers. Office Supplies has the best margin (22.8%) and Furniture the worst (2.6%).** Bookcases are loss-making. A map shows margin by country, and a treemap shows how sales are split by category and sub-category.
+**Technology earns the most profit, led by Copiers, Phones and Computers. Office Supplies has the best margin (22.8%) and Furniture the worst (2.6%).** Bookcases are loss-making. A Market × Category matrix shows where margin is thinnest: **Furniture loses money in EMEA (-3.5%) and LATAM (-2.0%)**, while Canada is the strongest market in every category (17.8% overall, against 5.1% in EMEA and 6.0% in LATAM). A map shows margin by country, and a treemap shows how sales are split by category and sub-category.
 
 ### Page 3: Discount Damage
 ![Discount Damage](images/page3-discount-damage.png)
