@@ -4,7 +4,7 @@
 
 > **Disclaimer:** *Atlas Global Retail* is a fictional company and all data is synthetic (seeded and reproducible with `src/generate_data.py`). This is a portfolio case study, not a real engagement.
 
-> **Status:** data, DAX measures, theme and the full build guide are included. Add your finished `.pbix` to `report/` and screenshots to `images/` (see section 9).
+> **Status:** complete. The finished report is [`report/Atlas_Sales_Profit_Analysis.pbix`](report/Atlas_Sales_Profit_Analysis.pbix) (open in Power BI Desktop on Windows). Data, DAX, theme and a rebuild guide are included.
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-DAX%20%7C%20Power%20Query-F2C811?logo=powerbi&logoColor=black) ![Python](https://img.shields.io/badge/Python-data%20generation-3776AB?logo=python&logoColor=white) ![Data](https://img.shields.io/badge/Data-synthetic-2A9D8F)
 
@@ -12,7 +12,32 @@
 
 ---
 
-## 1. The Scenario
+## Dashboard Preview
+
+A four-page report that moves from *how are we doing* to *where is the money leaking*. Key readings below each page come directly from the report.
+
+### Page 1: Executive Overview
+![Executive Overview](images/page1-executive-overview.png)
+
+**$4.5M sales, $488.8K profit, 10.9% margin** across about 6K orders and 1K customers (Jan 2023 to Oct 2026), with Year, Market and Segment slicers. Monthly sales are plotted against profit margin to show that revenue growth has not translated into margin, and sales are compared with target by market.
+
+### Page 2: Where Profit Is Made and Lost
+![Where Profit Is Made and Lost](images/page2-where-profit-is-made-and-lost.png)
+
+**Technology earns the most profit, led by Copiers, Phones and Computers. Office Supplies has the best margin (22.8%) and Furniture the worst (2.6%).** Bookcases are loss-making. A map shows margin by country, and a treemap shows how sales are split by category and sub-category.
+
+### Page 3: Discount Damage
+![Discount Damage](images/page3-discount-damage.png)
+
+**Orders discounted 30% or more bring in $505.5K of sales and lose $104.9K.** The average discount has crept up every year, and margin falls from about 22% with no discount to negative at high discounts. All ten Tables and Bookcases products are loss-making, and 14% of order lines lose money.
+
+### Page 4: Operations
+![Operations](images/page4-operations.png)
+
+**Faster shipping costs margin:** Standard Class earns about 12% against about 6% for Same Day. Of 562 returned orders, **"Damaged in transit" is the top reason (32%)**, followed by "Not as described" (23%). Average ship days have fallen over the period.
+
+---
+
 
 **Atlas Global Retail** sells technology, furniture and office supplies to consumers, corporates and home offices in five markets: US, Canada, EMEA, APAC and LATAM.
 
@@ -96,7 +121,7 @@ Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
 4. Create the what-if parameter: **Modeling → New parameter → Numeric range** (instructions in the DAX file).
 5. Import `theme/atlas-theme.json` via **View → Themes → Browse for themes**.
 
-### Step 3: Build five pages
+### Step 3: Build the pages (pages 1-4 are in the published report; page 5 is a suggested extension)
 
 | Page | Title | Story |
 |---|---|---|
@@ -189,8 +214,8 @@ The data covers **1 January 2023 to 28 October 2026** (2026 is year to date), so
 data/    orders, customers, products, returns, targets (synthetic CSVs)
 dax/     measures.dax - every calculated table, column and measure
 theme/   atlas-theme.json - custom Power BI theme
-report/  save your .pbix here
-images/  dashboard screenshots
+report/  Atlas_Sales_Profit_Analysis.pbix - the finished report
+images/  dashboard screenshots (pages 1-4)
 src/     generate_data.py - reproduces the data
 ```
 
