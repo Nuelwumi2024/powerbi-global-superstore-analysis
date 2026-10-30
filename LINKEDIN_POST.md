@@ -26,7 +26,7 @@ My recommendations: cap discounts at 20%, reprice or delist loss-making furnitur
 
 What I built:
 • A star-schema model with a Power Query merge for returns
-• DAX for time intelligence, budget vs actual, discount and loss analysis, and a what-if discount cap
+• DAX for time intelligence, budget vs actual, and discount and loss analysis
 • A 4-page report moving from KPI to root cause to action
 
 The company and data are fictional and synthetic, but the method applies to any retailer.

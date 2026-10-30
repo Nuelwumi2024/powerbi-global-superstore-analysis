@@ -59,8 +59,6 @@ Your job is to find out, and to hand the COO something she can act on.
 2. **Profitability:** which products, categories and markets make or lose money?
 3. **Pricing:** are discounts driving growth, or destroying margin?
 4. **Operations:** do shipping speed and returns eat into profit?
-5. **Customers:** who generates our sales, and how concentrated is it?
-6. **Action:** what would change if we capped discounts?
 
 ## 3. Data Model
 
@@ -102,8 +100,6 @@ Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
 | **Sales YTD / Rolling 12M** | Running totals | `TOTALYTD`, `DATESINPERIOD` |
 | **Sales / Profit vs Target %** | Actual against budget | `Actual ÷ Target - 1` |
 | **Loss-Making Lines / Loss Value** | Order lines with negative profit, and their total | `CALCULATE(..., Profit<0)` |
-| **Top 10% Customer Share** | Sales from the top 10% of customers | `TOPN` + `SUMX` |
-| **Profit at Discount Cap** | Profit if discounts were limited to X% (what-if, volume held constant) | `SUMX` row-level recalculation |
 
 ## 5. Build Guide
 
@@ -118,10 +114,9 @@ Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
 1. Create `DateTable` and `Markets` (**New table**) from the first lines of `measures.dax`. Mark `DateTable` as a date table.
 2. Add the relationships shown in section 3 (all single direction, one-to-many).
 3. Add the calculated columns, then the measures, into a `_Measures` table.
-4. Create the what-if parameter: **Modeling → New parameter → Numeric range** (instructions in the DAX file).
-5. Import `theme/atlas-theme.json` via **View → Themes → Browse for themes**.
+4. Import `theme/atlas-theme.json` via **View → Themes → Browse for themes**.
 
-### Step 3: Build the pages (pages 1-4 are in the published report; page 5 is a suggested extension)
+### Step 3: Build the four pages
 
 | Page | Title | Story |
 |---|---|---|
@@ -129,7 +124,6 @@ Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
 | 2 | **Where Profit Is Made and Lost** | Products and markets |
 | 3 | **Discount Damage** | Pricing is the main leak |
 | 4 | **Operations: Shipping & Returns** | Smaller leaks |
-| 5 | **Customers & What-If** | Who matters, and what the fix is worth |
 
 **Page 1: Executive Overview**
 - **Cards:** Sales, Profit, Profit Margin %, Orders, AOV, Sales YoY %
@@ -157,12 +151,6 @@ Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
 - **Donut:** Returned orders by ReturnReason
 - **Line chart:** Avg Ship Days by month
 
-**Page 5: Customers & What-If**
-- **Pareto chart:** customers by Sales as columns, Cumulative Sales % as a line (use a Top N of 50 customers)
-- **Cards:** Top 10% Customer Share, Sales per Customer
-- **Stacked column:** New vs Repeat customer sales by year
-- **What-if slicer** (`Discount Cap`) with **cards:** Profit at Discount Cap and Profit Uplift from Cap
-
 ### Step 4: Polish (what recruiters notice)
 - **Drill-through** from any market to a Market Detail page
 - **Bookmarks and buttons** for a page navigation bar and a "Reset filters" button
@@ -182,19 +170,17 @@ The data covers **1 January 2023 to 28 October 2026** (2026 is year to date), so
 - **Markets differ sharply:** Canada has about 18% margin and the US about 14%. **EMEA** sells $0.93M at only about 5% margin, and **LATAM** about 6%. Both discount heavily.
 - **Shipping:** Same Day earns about 6% margin and First Class 9%, against 12% for Standard Class.
 - **Returns:** about 10% of orders are returned, rising to about 22% in LATAM and about 15% for Furniture.
-- **Customer concentration:** the top 10% of customers account for about 51% of sales, and the top 20% for about 66%.
 - **Targets:** 2026 sales are about 1.5% under target, but **every market is behind on profit**, by about 21% overall.
 
 ## 7. Recommendations
 
 | Priority | Action | Why |
 |---|---|---|
-| 1 | **Cap discounts at 20%** and require approval above that | Lines at 30%+ lose money; the what-if page quantifies the recovery |
+| 1 | **Cap discounts at 20%** and require approval above that | Lines at 30%+ lose money, and margin falls from about 22% to 3% between no discount and 20% off |
 | 2 | **Reprice or delist Tables and Bookcases** | Loss-making at any meaningful discount |
 | 3 | **Review EMEA and LATAM discount policy** | Large markets with 5-6% margin |
 | 4 | **Charge for Same Day and First Class shipping** | Thin margins at these speeds |
 | 5 | **Look into LATAM returns** (damage in transit, delivery times) | Return rate is about double other markets |
-| 6 | **Protect the top 10% of customers** with a key-account programme | They drive about half of sales |
 
 ## 8. Skills Demonstrated
 
@@ -202,9 +188,9 @@ The data covers **1 January 2023 to 28 October 2026** (2026 is year to date), so
 |---|---|
 | **Data modelling** | Star schema, role of dimensions, a calculated Markets dimension, `TREATAS` for budget data |
 | **Power Query (ETL)** | Type cleaning, **merging** returns into orders, null handling, disabling load on staging queries |
-| **DAX** | Time intelligence (`SAMEPERIODLASTYEAR`, `TOTALYTD`, `DATESINPERIOD`), `RANKX`, `TOPN`, `SUMX`, `TREATAS`, what-if parameters, variables |
-| **Analytics** | Margin analysis, Pareto (80/20), budget vs actual, discount elasticity, return analysis |
-| **Visualisation** | Combo, treemap, scatter, matrix heatmap, Pareto, gauge, conditional formatting |
+| **DAX** | Time intelligence (`SAMEPERIODLASTYEAR`, `TOTALYTD`, `DATESINPERIOD`), `RANKX`, `TOPN`, `SUMX`, `TREATAS`, variables |
+| **Analytics** | Margin analysis, budget vs actual, discount impact, return analysis |
+| **Visualisation** | Combo, treemap, scatter, matrix heatmap, gauge, conditional formatting |
 | **Report design** | Drill-through, bookmarks, tooltips, dynamic titles, custom theme |
 | **Business storytelling** | A clear question, findings, costed recommendations |
 
