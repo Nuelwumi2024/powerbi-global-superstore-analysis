@@ -19,7 +19,7 @@ A four-page report that moves from *how are we doing* to *where is the money lea
 ### Page 1: Executive Overview
 ![Executive Overview](images/page1-executive-overview.png)
 
-**$4.5M sales, $488.8K profit, 10.9% margin** across about 6K orders and 1K customers (Jan 2023 to Oct 2026), with Year, Market and Segment slicers. Monthly sales are plotted in date order against profit margin, which shows Q4 sales peaks and a margin that has drifted from the mid-teens in 2023 towards 10%. A gauge shows **profit of $488.8K against a target of $579.3K, about 84% of target**, and a chart breaks the sales target down by market.
+**$4.5M sales, $488.8K profit, 10.9% margin** across about 6K orders and 1K customers (Jan 2023 to Oct 2026), with Year, Market and Segment slicers. Monthly sales are plotted in date order against profit margin, which shows Q4 sales peaks and a margin that has drifted from the mid-teens in 2023 towards 10%. A gauge shows **profit of $488.8K against a target of $579.3K, about 84% of target**, and a chart compares sales with target by market: **sales are within about 1% of target overall, so the shortfall is in profit, not in sales volume.**
 
 ### Page 2: Where Profit Is Made and Lost
 ![Where Profit Is Made and Lost](images/page2-where-profit-is-made-and-lost.png)
