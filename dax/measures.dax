@@ -1,22 +1,22 @@
 // ============================================================
 // Atlas Global Retail - Profitability Analysis: DAX
+// Every table, column and measure below is used by the four report pages.
 //
-// Tables: orders (fact), customers, products, targets, Markets, DateTable
-// Power Query: returns.csv is merged INTO orders (left outer on OrderID), expanding
-//              ReturnReason and Returned; nulls replaced with "None" / "No".
+// Tables: orders (fact), customers, products, returns, targets, Markets, DateTable
 //
-// Relationships (all one-to-many, single direction):
+// Relationships (one-to-many, single direction):
 //   customers[CustomerID] -> orders[CustomerID]
 //   products[ProductID]   -> orders[ProductID]
 //   DateTable[Date]       -> orders[OrderDate]
 //   Markets[Market]       -> customers[Market]
-//   Markets[Market]       -> targets[Market]
+//   returns[OrderID]      -> linked to orders by OrderID (return reasons)
+//   targets has no relationship: the target measures match it with TREATAS
 // ============================================================
 
 // ---------- Calculated tables ----------
 DateTable =
 ADDCOLUMNS (
-    CALENDAR ( DATE ( 2023, 1, 1 ), MAX ( orders[OrderDate] ) ),   // stops at the last order date so 2026 YTD compares like for like
+    CALENDAR ( DATE ( 2023, 1, 1 ), MAX ( orders[OrderDate] ) ),   // stops at the last order date
     "Year", YEAR ( [Date] ),
     "Quarter", "Q" & QUARTER ( [Date] ),
     "Month No", MONTH ( [Date] ),
@@ -26,124 +26,54 @@ ADDCOLUMNS (
 
 Markets = DISTINCT ( customers[Market] )
 
-// What-if parameter: Modeling > New parameter > Numeric range. Name "Discount Cap", min 0, max 0.5,
-// increment 0.1, default 0.5, tick "Add slicer". Power BI creates the table 'Discount Cap' for you.
-
-// ---------- Calculated columns ----------
-// orders
+// ---------- Calculated columns (orders) ----------
 Ship Days = DATEDIFF ( orders[OrderDate], orders[ShipDate], DAY )
 
 Discount Band =
 SWITCH (
     TRUE (),
-    orders[Discount] = 0, "No discount",
-    orders[Discount] <= 0.1, "1-10%",
-    orders[Discount] <= 0.2, "11-20%",
-    orders[Discount] <= 0.3, "21-30%",
-    "31%+"
+    orders[Discount] = 0, "No Discount",
+    orders[Discount] <= 0.1, "Low Discount",
+    orders[Discount] <= 0.2, "Medium Discount",
+    "High Discount"
 )
 
-Profit Flag = IF ( orders[Profit] < 0, "Loss-making", "Profitable" )
+Heavy Discount Sales (30%+) = IF ( orders[Discount] >= 0.3, orders[Sales], 0 )
 
-// customers
-First Order Date = CALCULATE ( MIN ( orders[OrderDate] ) )
-Cohort Year = YEAR ( customers[First Order Date] )
-
-// ---------- Core KPIs ----------
+// ---------- Core KPIs (page 1 cards) ----------
 Total Sales = SUM ( orders[Sales] )
 Total Profit = SUM ( orders[Profit] )
 Profit Margin % = DIVIDE ( [Total Profit], [Total Sales] )
 Orders = DISTINCTCOUNT ( orders[OrderID] )
 Customers = DISTINCTCOUNT ( orders[CustomerID] )
-Units Sold = SUM ( orders[Quantity] )
 AOV = DIVIDE ( [Total Sales], [Orders] )
-Avg Discount % = AVERAGE ( orders[Discount] )
-Shipping Cost % = DIVIDE ( SUM ( orders[ShippingCost] ), [Total Sales] )
-Avg Ship Days = AVERAGE ( orders[Ship Days] )
+Units Sold = SUM ( orders[Quantity] )
 
-// ---------- Time intelligence ----------
-Sales PY = CALCULATE ( [Total Sales], SAMEPERIODLASTYEAR ( DateTable[Date] ) )
-Profit PY = CALCULATE ( [Total Profit], SAMEPERIODLASTYEAR ( DateTable[Date] ) )
-Sales YoY % = DIVIDE ( [Total Sales] - [Sales PY], [Sales PY] )
-Profit YoY % = DIVIDE ( [Total Profit] - [Profit PY], [Profit PY] )
-Margin Change (pts) = [Profit Margin %] - DIVIDE ( [Profit PY], [Sales PY] )
-
-Sales YTD = TOTALYTD ( [Total Sales], DateTable[Date] )
-Profit YTD = TOTALYTD ( [Total Profit], DateTable[Date] )
-
-Sales Rolling 12M =
-CALCULATE ( [Total Sales], DATESINPERIOD ( DateTable[Date], MAX ( DateTable[Date] ), -12, MONTH ) )
-
-Sales MoM % =
-VAR Prev = CALCULATE ( [Total Sales], DATEADD ( DateTable[Date], -1, MONTH ) )
-RETURN DIVIDE ( [Total Sales] - Prev, Prev )
-
-// ---------- Targets (budget vs actual) ----------
+// ---------- Targets (page 1: sales vs target chart and profit gauge) ----------
 Sales Target =
-CALCULATE ( SUM ( targets[SalesTarget] ), TREATAS ( VALUES ( DateTable[Year] ), targets[Year] ) )
-
-Profit Target =
-CALCULATE ( SUM ( targets[ProfitTarget] ), TREATAS ( VALUES ( DateTable[Year] ), targets[Year] ) )
-
-Sales vs Target % = DIVIDE ( [Total Sales], [Sales Target] ) - 1
-Profit vs Target % = DIVIDE ( [Total Profit], [Profit Target] ) - 1
-
-Target Status =
-IF ( [Profit vs Target %] >= 0, "On target", IF ( [Profit vs Target %] >= -0.1, "Slightly below", "Off target" ) )
-
-// ---------- Discount & loss analysis ----------
-Discounted Sales % =
-DIVIDE ( CALCULATE ( [Total Sales], orders[Discount] > 0 ), [Total Sales] )
-
-Heavy Discount Sales (30%+) = CALCULATE ( [Total Sales], orders[Discount] >= 0.3 )
-Heavy Discount Profit (30%+) = CALCULATE ( [Total Profit], orders[Discount] >= 0.3 )
-
-Loss-Making Lines = CALCULATE ( COUNTROWS ( orders ), orders[Profit] < 0 )
-Loss Value = CALCULATE ( [Total Profit], orders[Profit] < 0 )
-Loss-Making Share % = DIVIDE ( [Loss-Making Lines], COUNTROWS ( orders ) )
-
-// ---------- What-if: cap discounts (assumes volume stays the same) ----------
-Profit at Discount Cap =
-SUMX (
-    orders,
-    VAR ListSales = DIVIDE ( orders[Sales], 1 - orders[Discount] )
-    VAR NewDisc = MIN ( orders[Discount], SELECTEDVALUE ( 'Discount Cap'[Discount Cap], 0.5 ) )
-    VAR NewSales = ListSales * ( 1 - NewDisc )
-    VAR Cost = orders[Sales] - orders[ShippingCost] - orders[Profit]
-    VAR NewShip = orders[ShippingCost] * DIVIDE ( NewSales, orders[Sales] )
-    RETURN NewSales - Cost - NewShip
+CALCULATE (
+    SUM ( targets[SalesTarget] ),
+    TREATAS ( VALUES ( DateTable[Year] ), targets[Year] ),
+    TREATAS ( VALUES ( customers[Market] ), targets[Market] )
 )
 
-Profit Uplift from Cap = [Profit at Discount Cap] - [Total Profit]
+Profit Target =
+CALCULATE (
+    SUM ( targets[ProfitTarget] ),
+    TREATAS ( VALUES ( DateTable[Year] ), targets[Year] ),
+    TREATAS ( VALUES ( customers[Market] ), targets[Market] )
+)
 
-// ---------- Returns ----------
-Returned Orders = CALCULATE ( DISTINCTCOUNT ( orders[OrderID] ), orders[Returned] = "Yes" )
-Return Rate % = DIVIDE ( [Returned Orders], [Orders] )
+Gauge Max = [Profit Target] * 1.2
 
-// ---------- Customers ----------
-Sales per Customer = DIVIDE ( [Total Sales], [Customers] )
+// ---------- Discount & loss analysis (page 3) ----------
+Avg Discount % = AVERAGE ( orders[Discount] )
 
-Customer Rank = RANKX ( ALLSELECTED ( customers[CustomerID] ), [Total Sales], , DESC, DENSE )
+Heavy Discount Profit = CALCULATE ( [Total Profit], orders[Discount] >= 0.3 )
 
-Cumulative Sales % =                                        // Pareto line
-VAR Cur = [Total Sales]
-VAR AllCust = ALLSELECTED ( customers[CustomerID] )
-RETURN
-    DIVIDE (
-        SUMX ( FILTER ( AllCust, [Total Sales] >= Cur ), [Total Sales] ),
-        CALCULATE ( [Total Sales], AllCust )
-    )
+Loss-Making Share % =
+DIVIDE ( CALCULATE ( COUNTROWS ( orders ), orders[Profit] < 0 ), COUNTROWS ( orders ) )
 
-Top 10% Customer Share =
-VAR N = ROUNDUP ( 0.1 * CALCULATE ( DISTINCTCOUNT ( orders[CustomerID] ), ALLSELECTED ( customers ) ), 0 )
-RETURN DIVIDE ( SUMX ( TOPN ( N, ALLSELECTED ( customers[CustomerID] ), [Total Sales] ), [Total Sales] ), [Total Sales] )
-
-New Customer Sales = CALCULATE ( [Total Sales], customers[Cohort Year] = SELECTEDVALUE ( DateTable[Year] ) )
-Repeat Customer Sales = [Total Sales] - [New Customer Sales]
-
-// ---------- Dynamic titles & formatting ----------
-Page Title =
-"Sales " & FORMAT ( [Total Sales] / 1000000, "$0.0" ) & "M  |  Profit "
-    & FORMAT ( [Total Profit] / 1000, "$#,0" ) & "K  |  Margin " & FORMAT ( [Profit Margin %], "0.0%" )
-
-Margin Colour = IF ( [Profit Margin %] < 0.05, "#C0392B", IF ( [Profit Margin %] < 0.10, "#F4A261", "#2A9D8F" ) )
+// ---------- Operations (page 4) ----------
+// Avg Ship Days: drag orders[Ship Days] into a visual and set it to Average.
+// Return orders by reason: Count of the Order ID column in returns, split by ReturnReason.

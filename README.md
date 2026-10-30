@@ -62,61 +62,61 @@ Your job is to find out, and to hand the COO something she can act on.
 
 ## 3. Data Model
 
-Star schema with five tables plus a date table. Returns arrive as a separate file and are merged in Power Query.
+Star schema with a fact table, three dimension-style tables, a targets table and a date table.
 
 | Table | Rows | Role |
 |---|---|---|
 | `orders` | 9,818 | Fact: one row per order line (sales, profit, discount, shipping cost, quantity) |
 | `customers` | 1,500 (1,261 have ordered) | Dimension: segment, market, region, country |
-| `products` | 70 | Dimension: category, sub-category, list price |
-| `returns` | 562 | Merged into `orders` in Power Query (Returned, ReturnReason) |
+| `products` | 70 | Dimension: category, sub-category, product name |
+| `returns` | 562 | One row per returned order, with the return reason |
 | `targets` | 20 | Sales and profit targets per market and year (2026 is the year-to-date target) |
 | `DateTable` / `Markets` | , | Calculated in DAX |
 
 ```
 customers 1 ──< orders >── 1 products          Markets 1 ──< customers
-DateTable 1 ──< orders                         Markets 1 ──< targets
+DateTable 1 ──< orders                         returns linked to orders by OrderID
+targets: no relationship, matched in the target measures with TREATAS
 ```
 
-Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
+Every formula used in the report: [`dax/measures.dax`](dax/measures.dax).
 
 ## 4. Metrics (what each KPI means and how it is calculated)
 
 | Metric | Definition | DAX idea |
 |---|---|---|
-| **Sales** | Revenue after discount | `SUM(Sales)` |
-| **Profit** | Sales minus product cost and shipping cost | `SUM(Profit)` |
+| **Total Sales** | Revenue after discount | `SUM(Sales)` |
+| **Total Profit** | Sales minus product cost and shipping cost | `SUM(Profit)` |
 | **Profit Margin %** | Share of sales kept as profit | `Profit ÷ Sales` (never average the margin column) |
 | **Orders** | Distinct orders (an order can have several lines) | `DISTINCTCOUNT(OrderID)` |
 | **Customers** | Distinct buying customers | `DISTINCTCOUNT(CustomerID)` |
 | **AOV** | Average order value | `Sales ÷ Orders` |
 | **Units Sold** | Total quantity | `SUM(Quantity)` |
-| **Avg Discount %** | Mean discount per line | `AVERAGE(Discount)` |
-| **Discounted Sales %** | Share of sales sold at any discount | `CALCULATE(Sales, Discount>0) ÷ Sales` |
-| **Shipping Cost %** | Shipping cost as a share of sales | `SUM(ShippingCost) ÷ Sales` |
-| **Avg Ship Days** | Days from order to dispatch | `AVERAGE(ShipDate - OrderDate)` |
-| **Return Rate %** | Orders returned ÷ orders | `CALCULATE(DISTINCTCOUNT(OrderID), Returned="Yes") ÷ Orders` |
-| **Sales / Profit YoY %** | Growth versus the same period last year | `SAMEPERIODLASTYEAR` |
-| **Sales YTD / Rolling 12M** | Running totals | `TOTALYTD`, `DATESINPERIOD` |
-| **Sales / Profit vs Target %** | Actual against budget | `Actual ÷ Target - 1` |
-| **Loss-Making Lines / Loss Value** | Order lines with negative profit, and their total | `CALCULATE(..., Profit<0)` |
+| **Sales Target / Profit Target** | Target for the selected year and market | `SUM(target)` with `TREATAS` on Year and Market |
+| **Gauge Max** | Upper limit of the profit gauge (120% of target) | `Profit Target × 1.2` |
+| **Avg Discount %** | Mean discount per order line | `AVERAGE(Discount)` |
+| **Discount Band** | No / Low (up to 10%) / Medium (up to 20%) / High (over 20%) discount | `SWITCH(TRUE(), ...)` |
+| **Heavy Discount Sales (30%+)** | Sales on lines discounted 30% or more | calculated column, summed |
+| **Heavy Discount Profit** | Profit on lines discounted 30% or more | `CALCULATE(Profit, Discount>=0.3)` |
+| **Loss-Making Share %** | Share of order lines with negative profit | `CALCULATE(COUNTROWS, Profit<0) ÷ COUNTROWS` |
+| **Ship Days** | Days from order to dispatch | `DATEDIFF(OrderDate, ShipDate, DAY)` |
+| **Returned orders** | Orders returned, by reason | `COUNT` of `returns[OrderID]` |
 
 ## 5. Build Guide
 
 ### Step 1: Load and clean (Power Query)
 1. **Get Data → Text/CSV** and load all five CSVs from `data/`.
-2. In `orders`: set `OrderDate` and `ShipDate` to **Date**, and `Sales`, `Profit`, `Discount`, `ShippingCost` to **Decimal Number**.
-3. **Merge queries:** `orders` with `returns` on `OrderID`, **Left Outer**. Expand `ReturnReason` and `Returned`.
-4. **Replace nulls:** `Returned` null → `No`, `ReturnReason` null → `None`.
-5. Untick **Enable load** on the `returns` query. Set key columns in `customers`, `products` to text. **Close & Apply**.
+2. For `returns`, use **Use First Row as Headers** if the headers load as a data row.
+3. In `orders`: set `OrderDate` and `ShipDate` to **Date**, and `Sales`, `Profit`, `Discount`, `ShippingCost` to **Decimal Number**.
+4. Check the key columns in `customers` and `products` are text, then **Close & Apply**.
 
 ### Step 2: Model
 1. Create `DateTable` and `Markets` (**New table**) from the first lines of `measures.dax`. Mark `DateTable` as a date table.
-2. Add the relationships shown in section 3 (all single direction, one-to-many).
-3. Add the calculated columns, then the measures, into a `_Measures` table.
+2. Add the relationships shown in section 3 (single direction, one-to-many). Leave `targets` unconnected.
+3. Add the calculated columns, then the measures.
 4. Import `theme/atlas-theme.json` via **View → Themes → Browse for themes**.
 
-### Step 3: Build the four pages
+### Step 3: The four pages
 
 | Page | Title | Story |
 |---|---|---|
@@ -126,38 +126,31 @@ Full relationships and every formula: [`dax/measures.dax`](dax/measures.dax).
 | 4 | **Operations: Shipping & Returns** | Smaller leaks |
 
 **Page 1: Executive Overview**
-- **Cards:** Sales, Profit, Profit Margin %, Orders, AOV, Sales YoY %
-- **Combo chart (columns + line):** Sales by year-month as columns, Profit Margin % as a line
-- **Clustered column:** Sales vs Sales Target by Market
-- **Gauge or KPI visual:** Profit vs Target %
+- **Cards:** Total Sales, Profit Margin %, Total Profit, Orders, Customers, AOV, Units Sold
+- **Clustered column:** Sales Target and Total Sales by Market
+- **Gauge:** Total Profit against Profit Target (Gauge Max as the maximum)
+- **Combo chart:** Total Sales (columns) and Profit Margin % (line) by Year-Month
 - **Slicers:** Year, Market, Segment
 
 **Page 2: Where Profit Is Made and Lost**
-- **Treemap:** Sales by Category and Sub-Category, coloured by Profit Margin %
-- **Bar chart (diverging colours):** Profit by Sub-Category, with losses in red
-- **Filled map or bar:** Profit Margin % by Country
-- **Matrix:** Market × Category, values = Profit Margin %, with conditional formatting
+- **Map:** Profit Margin % by Country
+- **Bar chart:** Total Profit by Sub-Category
+- **Matrix:** Market × Category, values = Profit Margin %
+- **Treemap:** Total Sales by Category and Sub-Category, coloured by Profit Margin %
 
 **Page 3: Discount Damage**
+- **Cards:** Heavy Discount Sales (30%+), Heavy Discount Profit, Loss-Making Share %
+- **Table:** Total Profit by product, filtered to the ten lowest
+- **Line chart:** Avg Discount % by Year
 - **Column chart:** Profit Margin % by Discount Band
-- **Scatter:** Discount % against Profit by sub-category
-- **Cards:** Heavy Discount Sales (30%+), Heavy Discount Profit (30%+), Loss-Making Share %
-- **Table:** the 10 most loss-making products (Top N filter on Profit)
-- **Line chart:** Avg Discount % by year (discount creep)
+- **Scatter:** Avg Discount % against Total Profit by Sub-Category, sized by Total Sales
 
 **Page 4: Operations: Shipping & Returns**
-- **Bar chart:** Profit Margin % by Ship Mode, plus Shipping Cost %
-- **Column chart:** Return Rate % by Market and by Category
-- **Donut:** Returned orders by ReturnReason
-- **Line chart:** Avg Ship Days by month
+- **Bar chart:** Profit Margin % by Ship Mode
+- **Donut:** Returned orders by return reason
+- **Line chart:** Average Ship Days by Year-Month
 
-### Step 4: Polish (what recruiters notice)
-- **Drill-through** from any market to a Market Detail page
-- **Bookmarks and buttons** for a page navigation bar and a "Reset filters" button
-- **Tooltip pages** for the KPI cards
-- **Dynamic title** using the `Page Title` measure
-- **Conditional formatting** using `Margin Colour`
-- Consistent theme, aligned visuals, no clutter, and a short subtitle on every chart
+The report uses the custom theme and a consistent navy, teal and amber palette throughout.
 
 ## 6. What the Data Shows (verify against your build)
 
@@ -169,8 +162,8 @@ The data covers **1 January 2023 to 28 October 2026** (2026 is year to date), so
 - **Technology earns the most profit** ($314K), led by Copiers ($153K). **Office Supplies has the best margin** (about 23%) but small volume.
 - **Markets differ sharply:** Canada has about 18% margin and the US about 14%. **EMEA** sells $0.93M at only about 5% margin, and **LATAM** about 6%. Both discount heavily.
 - **Shipping:** Same Day earns about 6% margin and First Class 9%, against 12% for Standard Class.
-- **Returns:** about 10% of orders are returned, rising to about 22% in LATAM and about 15% for Furniture.
-- **Targets:** 2026 sales are about 1.5% under target, but **every market is behind on profit**, by about 21% overall.
+- **Returns:** 562 orders were returned, and **damaged in transit is the top reason (32%)**, followed by not as described (23%).
+- **Targets:** sales are within about 1% of target overall, but **profit is about 16% short** ($488.8K against $579.3K).
 
 ## 7. Recommendations
 
@@ -180,25 +173,25 @@ The data covers **1 January 2023 to 28 October 2026** (2026 is year to date), so
 | 2 | **Reprice or delist Tables and Bookcases** | Loss-making at any meaningful discount |
 | 3 | **Review EMEA and LATAM discount policy** | Large markets with 5-6% margin |
 | 4 | **Charge for Same Day and First Class shipping** | Thin margins at these speeds |
-| 5 | **Look into LATAM returns** (damage in transit, delivery times) | Return rate is about double other markets |
+| 5 | **Reduce damage in transit** (packaging, carrier review) | It is the top reason for returns (32% of returned orders) |
 
 ## 8. Skills Demonstrated
 
 | Area | Evidence in this project |
 |---|---|
-| **Data modelling** | Star schema, role of dimensions, a calculated Markets dimension, `TREATAS` for budget data |
-| **Power Query (ETL)** | Type cleaning, **merging** returns into orders, null handling, disabling load on staging queries |
-| **DAX** | Time intelligence (`SAMEPERIODLASTYEAR`, `TOTALYTD`, `DATESINPERIOD`), `RANKX`, `TOPN`, `SUMX`, `TREATAS`, variables |
+| **Data modelling** | Star schema, one-to-many relationships, a calculated Markets table, resolving ambiguous relationship paths, `TREATAS` for budget data |
+| **Power Query (ETL)** | Loading multiple sources, promoting headers, setting data types |
+| **DAX** | Calculated tables and columns, `CALCULATE` with filters, `DIVIDE`, `DISTINCTCOUNT`, `SWITCH`, `DATEDIFF`, `TREATAS` |
 | **Analytics** | Margin analysis, budget vs actual, discount impact, return analysis |
-| **Visualisation** | Combo, treemap, scatter, matrix heatmap, gauge, conditional formatting |
-| **Report design** | Drill-through, bookmarks, tooltips, dynamic titles, custom theme |
+| **Visualisation** | Combo, treemap, scatter, matrix, gauge, map, donut, KPI cards |
+| **Report design** | Custom theme, slicers, consistent layout and palette |
 | **Business storytelling** | A clear question, findings, costed recommendations |
 
 ## 9. Repository
 
 ```
 data/    orders, customers, products, returns, targets (synthetic CSVs)
-dax/     measures.dax - every calculated table, column and measure
+dax/     measures.dax - every calculated table, column and measure used in the report
 theme/   atlas-theme.json - custom Power BI theme
 report/  Atlas_Sales_Profit_Analysis.pbix - the finished report
 images/  dashboard screenshots (pages 1-4)

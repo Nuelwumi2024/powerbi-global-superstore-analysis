@@ -25,8 +25,8 @@ I analysed 3.9 years of order data (Jan 2023 to Oct 2026) across 5 markets. Here
 My recommendations: cap discounts at 20%, reprice or delist loss-making furniture, review EMEA and LATAM discounting, and charge for premium shipping.
 
 What I built:
-• A star-schema model with a Power Query merge for returns
-• DAX for time intelligence, budget vs actual, and discount and loss analysis
+• A star-schema model with Power Query clean-up
+• DAX for margin, budget vs actual, and discount and loss analysis
 • A 4-page report moving from KPI to root cause to action
 
 The company and data are fictional and synthetic, but the method applies to any retailer.
